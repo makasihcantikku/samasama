@@ -1,4 +1,3 @@
-maulahcode.js
 // ==========================================
 // UNDANGAN CORE LOGIC (CDN READY)
 // Jangan ubah ini untuk klien berbeda.
