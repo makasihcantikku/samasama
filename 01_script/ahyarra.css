@@ -1,0 +1,3089 @@
+/*<![CDATA[*/
+/* =========================================================
+   1. DESIGN TOKENS (MASTER ROOT)
+========================================================= */
+@font-face {
+    font-family: 'f-ayres';
+    src: url('https://makasihcantikku.github.io/samasama/01_script/fontku/f-ayres.woff2 ') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* -- Base Colors -- */
+    --c-base-black:    #020202;
+    --c-base-white:    #fdfdfd;
+    
+    /* -- Brand Colors (Theme) -- */
+    --c-brand-300:     #e3d1ba;
+    --c-brand-500:     #d4bc96; 
+    --c-brand-700:     #C4A882; 
+    --c-brand-glow:    rgba(196, 168, 130, 0.25);
+    
+    /* -- Neutral Grays -- */
+    --c-gray-100:      #f3f4f6;
+    --c-gray-300:      #d1d5db;
+    --c-gray-500:      #6b7280;
+    --c-gray-800:      #1f2937;
+    --c-gray-900:      #111827;
+
+    /* -- State Colors -- */
+    --c-danger-500:    #ef4444;
+    --c-success-500:   #22c55e;
+
+    /* -- Typography Families -- */
+    --font-display:    'f-ayres', cursive;
+    --font-heading:    'Amiri', serif;
+    --font-body:       'Amiri', sans-serif;
+    --font-sans:       'Wix Made for Text', sans-serif;
+
+    /* -- Fluid Typography Scale -- */
+    --text-h1:         clamp(4.8rem, 5vw, 6rem);                       
+    --text-3xl:        clamp(3.36rem, 4.8vw, 4.8rem);   
+    --text-2xl:        clamp(2.16rem, 3.6vw, 2.4rem);   
+    --text-xl:         clamp(1.44rem, 2.4vw, 1.68rem); 
+    --text-base:       clamp(0.96rem, 1.68vw, 1.06rem);
+    --text-sm:         clamp(0.84rem, 1.44vw, 0.94rem);
+    --text-xs:         clamp(0.82rem, 1.32vw, 0.84rem);
+
+    /* -- Spacing Scale (Base 4px/8px) -- */
+    --sp-1:            0.26rem;   
+    --sp-2:            0.4rem;    
+    --sp-3:            0.74rem;   
+    --sp-4:            1rem;      
+    --sp-6:            1.4rem;    
+    --sp-8:            2rem;      
+    --sp-12:           3rem;      
+    --sp-16:           4rem;      
+
+    /* -- Effects (Transitions, Shadows, Radius) -- */
+    --ts-fast:         0.15s ease;
+    --ts-base:         0.4s ease;
+    --ts-slow:         0.5s ease;
+
+    --shadow-sm:       0 2px 12px rgba(0,0,0,0.3);
+    --shadow-md:       0 4px 16px rgba(0,0,0,0.6);
+    --shadow-lg:       0 8px 40px rgba(0,0,0,0.8);
+    --shadow-brand:    0 0 60px var(--c-brand-glow);
+
+    --rad-sm:          4px;
+    --rad-md:          8px;
+    --rad-lg:          16px;
+    --rad-full:        9999px; 
+
+    /* -- Z-Index -- */
+    --z-base:          0;
+    --z-raised:        10;
+    --z-overlay:       40;
+    --z-modal:         996;
+    --z-top:           999999;
+
+    /* =========================================================
+       2. SEMANTIC TOKENS (PENGGUNAAN)
+    ========================================================= */
+    --w-container:     669px;
+    --bg-primary:      var(--c-base-white);
+    --bg-secondary:    var(--c-gray-100);
+    --bg-tertiary:     var(--c-gray-300);
+    --bg-inverse:      var(--c-base-black);
+
+    --text-primary:    var(--c-gray-900);
+    --text-secondary:  var(--c-gray-500);
+    --text-inverse:    var(--c-base-white);
+
+    --accent-main:     var(--c-brand-500);
+    --accent-hover:    var(--c-brand-700);
+    --accent-light:    rgba(212, 188, 150, 0.1);
+    --border-subtle:   var(--c-gray-300);
+    --border-accent:   rgba(196, 168, 130, 0.4);
+    --orn-l-sol:          url('lc_motif.webp');    
+    --orn-l-flo:          url('lc_flower.webp');
+    --orn-r-sol:          url('rc_motif.webp');    
+    --orn-r-flo:          url('rc_flower.webp');
+
+    --grad-accent-x:   linear-gradient(to right, transparent, var(--accent-main), transparent);
+    --grad-accent-r:   linear-gradient(to right, var(--accent-main), transparent);
+    --grad-overlay-b:  linear-gradient(to top, rgba(14,14,14,0.8) 20%, rgba(14,14,14,0.55) 55%, rgba(24,24,24,0.4) 100%);
+    --grad-hero-down:  linear-gradient(to bottom, rgba(26,18,8,0.8) 0%, rgba(26,18,8,0.15) 100%);
+    --grad-hero-up:    linear-gradient(to top, rgba(10,8,4,0.88) 0%, rgba(10,8,4,0.45) 50%, rgba(10,8,4,0.10) 100%);
+}
+/*]]>*/
+
+/*<![CDATA[*/
+/* =========================================
+   0. RESET GLOBAL
+========================================= */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+}
+
+body, html, .dataclient {
+    margin: 0; 
+    padding: 0;
+    height: 100dvh;
+    overflow: hidden;
+    font-family: var(--font-body);
+    background-color: var(--bg-inverse);
+    color: var(--text-inverse);
+}
+
+/* =========================================
+   LOADING PRELOADER
+========================================= */
+#preloader {
+    position: fixed; 
+    inset: 0;
+    background-color: var(--bg-inverse); 
+    z-index: var(--z-top);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%; 
+    height: 100dvh;
+}
+
+#preloader h1 {
+    font-family: var(--font-display); 
+    font-size: var(--text-h1);
+    margin: 0; 
+    font-weight: normal;
+    background: linear-gradient(to right, var(--c-base-white) 50%, var(--c-gray-500) 50%);
+    background-size: 200% 100%; 
+    background-position: 100% 0;
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    color: transparent;
+    opacity: 0; 
+    transition: opacity var(--ts-slow), background-position 0.2s ease-out;
+    width: fit-content; 
+    text-align: center;
+}
+
+#preloader h1.font-loaded { 
+    opacity: 1; 
+}
+
+.loading-line-wrapper { 
+    width: 100%; 
+    height: 2px; 
+    background-color: rgba(255, 255, 255, 0.2); 
+    margin-top: var(--sp-6); 
+    position: relative; 
+    overflow: hidden; 
+    border-radius: var(--rad-sm); 
+}
+
+.loading-line { 
+    position: absolute; 
+    top: 0; 
+    left: -50%; 
+    width: 50%; 
+    height: 100%; 
+    background-color: var(--c-base-white); 
+    animation: loadingLoop 1.2s infinite ease-in-out; 
+}
+
+@keyframes loadingLoop { 
+    0% { left: -50%; } 
+    100% { left: 100%; } 
+}
+
+/* =========================================
+   KOMPONEN BERSAMA (Glass, Custom Alert)
+========================================= */
+
+.bg-pattern {
+    background-color: var(--bg-primary); 
+    width: 100%;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-primary); 
+    z-index: -1;
+}
+
+.bg-pattern::after {
+    content: ""; 
+    position: absolute;
+    inset: 0; 
+    background-image: url('repeat-pattern.svg'); 
+    background-repeat: repeat;
+    background-size: 88.4px 152.5px; 
+    z-index: var(--z-base); 
+    pointer-events: none; 
+    opacity: 0.6; 
+}
+
+.no-over{overflow-y: auto!important; overflow-x: hidden!important;}
+.italku {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 0.8em;
+    font-weight: normal;
+    vertical-align: 0.14em;
+}
+
+.glass-form {
+    border-radius: var(--rad-md);
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 3vw, 22px);
+    border: 1.5px solid rgba(55, 55, 55, 0.65);
+    transition: var(--ts-base);
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--text-inverse);
+}
+
+.glass-cta {
+    cursor: pointer;
+    border-radius: var(--rad-md);
+    background: transparent;
+    color: var(--text-primary);
+    border: 1.5px solid var(--accent-main);
+    transition: var(--ts-base);
+    backdrop-filter: blur(8px);
+    background: var(--border-accent);
+    padding: 4px var(--sp-6);
+}
+
+.glass-cta:hover {
+    background: var(--c-brand-700);
+    border-color: var(--c-gray-500);
+    color: var(--text-primary);
+}
+
+/* =========================================
+   PENYESUAIAN SOLID TEMA TERANG (SEC 11 & 12)
+========================================= */
+#sec-11 .glass-form,
+#sec-12 .glass-form {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-primary); /* Ganti dari transparan ke putih solid */
+    color: var(--text-primary); /* Teks di dalam form jadi gelap agar terbaca */
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sedikit bayangan manis */
+}
+
+/* Mengatur input/textarea placeholder di Sec 11 agar gelap */
+#sec-11 .sec11-rsvp-input::placeholder, 
+#sec-11 .sec11-rsvp-textarea::placeholder { 
+    color: var(--text-primary); 
+    opacity: 0.5; 
+}
+
+#sec-11 .glass-cta,
+#sec-12 .glass-cta {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+    color: var(--text-primary); /* Teks tombol jadi gelap */
+}
+
+#sec-11 .glass-cta:hover,
+#sec-12 .glass-cta:hover,
+#sec-11 .glass-cta:active,
+#sec-12 .glass-cta:active,
+#sec-11 .glass-cta:focus,
+#sec-12 .glass-cta:focus {
+    background: var(--accent-main);
+    color: var(--text-inverse); /* Teks jadi putih saat di-hover */
+}
+
+/* TAMBAHAN BARU: Status Terpilih (Class dari JS) */
+#sec-11 .glass-cta.active {
+    background: var(--accent-main);
+    color: var(--text-inverse); 
+    border-color: var(--accent-main);
+}
+
+/* (Opsional khusus Sec 12) Menggelapkan scrollbar di teks ucapan yang panjang */
+#sec-12 .sec12-wish-text::-webkit-scrollbar-thumb { 
+    background: transparent; 
+}
+
+#custom-alert-container { 
+    position: absolute; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: calc(100% - 40px); 
+    max-width: 400px; 
+    z-index: 999999; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    pointer-events: none; 
+}
+
+#custom-alert-container > .uk-alert { 
+    pointer-events: auto; 
+    margin: 0; 
+    border-radius: var(--rad-sm); 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.05em; 
+    box-shadow: var(--shadow-md); 
+    border: 1px solid rgba(255,255,255,0.2); 
+    backdrop-filter: blur(8px); 
+}
+
+.uk-alert-primary { 
+    background: rgba(196, 168, 130, 0.95); 
+    color: #0a0a0a; 
+    border-color: #C4A882 !important; 
+}
+
+.uk-alert-warning { 
+    background: rgba(220, 53, 69, 0.95); 
+    color: #fff; 
+    border-color: #ff4d4d !important; 
+}
+
+/* =========================================
+   TOMBOL MENGAPUNG & MODAL NAV
+========================================= */
+.hamburger-btn { 
+    position: fixed; 
+    top: 25px; 
+    right: 25px; 
+    width: 45px; 
+    height: 45px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 20px; 
+    z-index: var(--z-raised); 
+    padding: 0;
+}
+
+.bottom-data { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    width: calc(var(--w-container) - 60px); 
+    z-index: var(--z-raised); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    pointer-events: none; 
+}
+
+.bottom-data > * { 
+    pointer-events: auto; 
+}
+
+.action-group { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; 
+}
+
+.action-btn { 
+    width: 45px; 
+    height: 45px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 0;
+}
+
+.action-btn a {
+    color: var(--text-primary);
+}
+
+#pagination-counter {
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+#nav-modal { 
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    width: 100%; 
+    max-width: var(--w-container); 
+    height: 100dvh; 
+    background-color: var(--bg-inverse); 
+    z-index: var(--z-modal); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.close-btn { 
+    position: absolute; 
+    top: 25px; 
+    right: 25px; 
+    background: none; 
+    border: none; 
+    font-size: 35px; 
+    cursor: pointer; 
+    color: var(--text-inverse); 
+}
+
+.menu-list { 
+    list-style: none; 
+    padding: 0; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 5%; 
+}
+
+.nav-modal ul, 
+.menu-list li { 
+    width: fit-content;
+}
+
+.menu-list a {
+    color: var(--text-inverse);
+    font-size: 1.4rem;
+    font-weight: 100;
+    font-family: var(--font-heading);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.menu-list a i { 
+    width: 50px; 
+    align-content: center;
+}
+
+/* =========================================
+   LAYOUT UTAMA (SPLIT SCREEN)
+========================================= */
+.cover-container {
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    height: 100dvh; 
+    width: 100%; 
+    display: flex;
+}
+
+/* =========================================
+   LEFT SIDE — Heritage Editorial Panel
+   (Clean & Scalable Version)
+========================================= */
+.left-side {
+    flex: 1;
+    padding: clamp(32px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--bg-inverse);
+    border-right: 1px solid rgba(212, 188, 150, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================
+   LEFT SIDE - Background Image & Overlay
+========================================= */
+.left-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    object-position: center 40%; 
+    filter: saturate(0.5);
+    z-index: 0;
+}
+
+/* Overlay gelap di atas gambar (z-index: 1) */
+.left-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(2, 2, 2, 0.85) 0%, rgba(2, 2, 2, 0.25) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Dot pattern di atas overlay (z-index: 2) */
+.left-side .dot-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: radial-gradient(circle, var(--c-brand-500) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Teks Utama di paling depan (z-index: 3) */
+.left-hero-content {
+    position: relative;
+    z-index: var(--z-raised);
+}
+
+/* Ornamen Kiri Atas */
+.left-side::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: min(16dvh, 20dvh);
+    
+    /* 1. Dipecah agar browser tidak bingung mem-parsing var() */
+    background-image: var(--orn-l-sol, none);
+    background-position: left bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 2; /* 2. PENTING: Agar tidak tenggelam di bawah overlay gelap */
+}
+
+/* Ornamen Kiri Bawah */
+.left-side::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(40dvh, 44dvh);
+    
+    /* 1. Dipecah agar aman */
+    background-image: var(--orn-r-flo, one);
+    background-position: right top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 1024/912;
+    opacity: 0.4;
+    pointer-events: none;
+     /* 2. PENTING: Agar tidak tenggelam di bawah overlay gelap */
+}
+
+.left-hero-content .left-eyebrow {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(212, 188, 150, 0.7);
+    display: block;
+    margin-bottom: var(--sp-4);
+}
+
+.left-hero-content .left-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    color: var(--text-inverse);
+    font-weight: normal;
+    line-height: 1em;
+    margin: 0 0 var(--sp-4);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.left-hero-content .left-divider {
+    width: 44px;
+    height: 1px;
+    background: var(--c-brand-500);
+    margin-bottom: var(--sp-4);
+}
+
+.left-hero-content .left-date {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: var(--text-base);
+    color: rgba(253, 253, 253, 0.6);
+    margin: 0 0 var(--sp-2);
+}
+
+.left-hero-content .left-location {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(253, 253, 253, 0.4);
+    margin: 0;
+}
+
+.main-content-wrapper { 
+    width: 100%; 
+    max-width: var(--w-container); 
+    height: 100dvh;
+    position: relative; 
+    box-shadow: -5px 0 25px rgba(0,0,0,0.3); 
+    background-color: transparent;
+}
+
+/* =========================================
+   BACKGROUND PARALLAX
+========================================= */
+.bg-slideshow-parallax { 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: var(--z-base); 
+    pointer-events: none; 
+    overflow: hidden; 
+}
+
+.bg-slideshow-parallax::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; 
+    background: var(--grad-hero-down); 
+    z-index: 1; 
+}
+
+.bg-slideshow-parallax .uk-slideshow-items { 
+    height: 100dvh !important; 
+}
+
+/* =========================================
+   COVER OVERLAY
+========================================= */
+.cover-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: var(--z-modal);
+    pointer-events: none;
+}
+
+.cover-overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100dvh;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: clamp(10px, 2dvh, 20px); 
+    background-color: var(--bg-primary); 
+    color: var(--text-primary); 
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    text-align: center; 
+    overflow: hidden; 
+    padding: 0;
+    pointer-events: auto; 
+}
+
+/* Layer Pattern */
+.cover-overlay::before { 
+    content: ""; 
+    position: absolute; 
+    inset: 0; 
+    background-image: url('repeat-pattern.svg'); 
+    background-repeat: repeat; 
+    background-size: 88.4px 152.5px; 
+    opacity: 0.5; 
+    z-index: 1; 
+    pointer-events: none;
+}
+
+/* Layer PNG di dalam Cover Overlay */
+.cover-overlay .png-layer {
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 160%; 
+    min-width: 102%; 
+    height: 102%; 
+    background-image: url('A1_outside.webp'); 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    background-size: cover; 
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+.cover-overlay > * { 
+    position: relative; 
+    z-index: 3; 
+}
+
+/* =========================================
+   STRUKTUR FLEX LAYOUT (ATAS, TENGAH, BAWAH)
+========================================= */
+.cover-top { 
+    flex: 1 1 15%; 
+    width: 100%; 
+    padding: var(--sp-4) var(--sp-6) 0; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end; 
+}
+
+.cover-center { 
+    flex: 3 1 70%; 
+    width: 100%; 
+    padding: 0 var(--sp-6) 5%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: end; 
+}
+
+.cover-bottom { 
+    flex: 1 1 30%; 
+    width: 100%; 
+    padding: 0 var(--sp-4) clamp(24px, 5dvh, 48px); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: clamp(16px, 3dvh, 24px); 
+}
+
+/* =========================================
+   DETAIL KONTEN TEKS
+========================================= */
+.cover-top .label-atas { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    font-weight: 400; 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    color: var(--text-primary); 
+    opacity: 0.9; 
+    margin: 0; 
+}
+
+.cover-ornament { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--sp-3); 
+    width: 100%; 
+    max-width: 300px; 
+    margin-top: var(--sp-2); 
+}
+
+.cover-ornament span { 
+    flex: 1; 
+    height: 1px; 
+    background: var(--grad-accent-x); 
+    opacity: 0.6; 
+}
+
+.cover-ornament i { 
+    font-size: var(--text-xs); 
+    color: var(--text-primary); 
+    opacity: 0.7; 
+}
+
+.cover-label-wedding {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 300;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: var(--sp-2);
+    padding: 0 0 2%;
+}
+
+.cover-names { 
+    font-family: var(--font-display); 
+    font-size: var(--text-h1); 
+    line-height: 1; 
+    color: var(--accent-hover); 
+    margin: 0 0 var(--sp-4); 
+    letter-spacing: 0.01em; 
+}
+
+.cover-divider { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--sp-3); 
+    margin: var(--sp-1) 0 var(--sp-6); 
+    width: 100%; 
+    max-width: 260px; 
+}
+
+.cover-divider span { 
+    flex: 1; 
+    height: 1px; 
+    background: var(--grad-accent-x); 
+}
+
+.cover-divider svg { 
+    width: 14px; 
+    height: 14px; 
+    fill: var(--text-primary); 
+    flex-shrink: 0; 
+}
+
+.cover-date { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: var(--sp-1); 
+}
+
+.cover-date .date-day {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.cover-date .date-full {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.08em;
+}
+
+.cover-date .full-location {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0;
+}
+
+.cover-kepada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-1);
+    padding: var(--sp-4) var(--sp-6);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--rad-md);
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(8px);
+    max-width: 320px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.cover-kepada .kpd-label { 
+    font-family: var(--font-heading); 
+    font-style: italic; 
+    font-size: var(--text-base); 
+    font-weight: 300; 
+    color: var(--text-primary); 
+    letter-spacing: 0.06em; 
+    opacity: 0.7;
+}
+
+.cover-kepada .kpd-name { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-xl); 
+    font-weight: 500; 
+    color: var(--text-primary); 
+    letter-spacing: 0.04em; 
+    line-height: 1.2; 
+}
+
+.cover-kepada .kpd-sub { 
+    font-family: var(--font-heading); 
+    font-style: italic; 
+    font-size: var(--text-sm); 
+    font-weight: 300; 
+    color: var(--text-primary); 
+    opacity: 0.6;
+}
+
+.btn-open-cover { 
+    cursor: pointer; 
+    padding: var(--sp-3) var(--sp-8); 
+    border-radius: var(--rad-full); 
+    color: var(--text-primary); 
+    border: 1.5px solid rgba(0,0,0,0.3); 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    font-weight: 400; 
+    letter-spacing: 0.25em; 
+    text-transform: uppercase; 
+    transition: var(--ts-base); 
+    backdrop-filter: blur(4px); 
+    background: rgba(255,255,255,0.4); 
+}
+
+.btn-open-cover:hover { 
+    background: var(--bg-primary); 
+    border-color: var(--text-primary); 
+}
+
+.btn-open-cover i { 
+    margin-right: 8px; 
+    font-size: 0.85em; 
+    opacity: 0.8; 
+}
+
+.cover-overlay.active { 
+    transform: translateY(-100%); 
+}
+
+/* =========================================
+   SCROLL AREA KONTEN (main-content)
+========================================= */
+.main-content {
+    width: 100%; 
+    height: 100%;
+    background-color: transparent !important;
+    position: relative; 
+    z-index: 1; 
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+    -webkit-overflow-scrolling: touch;
+}
+
+.main-content.show-scroll { 
+    overflow-y: scroll; 
+}
+
+.snap-active { 
+    scroll-snap-type: y mandatory; 
+}
+
+.snap-section { 
+    scroll-snap-align: start; 
+}
+
+:where(.main-content) h1 { 
+    font-size: var(--text-h1); 
+    font-family: var(--font-display); 
+    color: var(--c-base-white); 
+    font-weight: 100;
+}
+
+:where(.main-content) h2 { 
+    font-size: var(--text-2xl); 
+    font-family: var(--font-heading); 
+    color: var(--c-base-white);
+}
+
+:where(.main-content) h3 { 
+    font-size: var(--text-xl); 
+    margin-bottom: 15px; 
+    font-weight: 600; 
+    font-family: var(--font-heading); 
+    letter-spacing: 0.04em; 
+    color: var(--c-base-white);
+}
+
+:where(.main-content) h4 {
+    color: var(--c-base-white);
+}
+
+:where(.main-content) p, 
+:where(.main-content) li, 
+:where(.main-content) input, 
+:where(.main-content) select, 
+:where(.main-content) button { 
+    font-size: var(--text-base); 
+}
+
+:where(.main-content) a { 
+    color: var(--text-inverse);
+}
+
+:where(.main-content) a:hover {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.main-content::-webkit-scrollbar { 
+    width: 10px; 
+}
+
+.main-content::-webkit-scrollbar-track { 
+    background: transparent; 
+    border-radius: 10px; 
+}
+
+.main-content::-webkit-scrollbar-thumb { 
+    background: var(--accent-hover); 
+    border-radius: 10px; 
+    border: 2px solid #666; 
+}
+
+.main-content::-webkit-scrollbar-thumb:hover { 
+    background: var(--accent-main); 
+}
+
+.main-content { 
+    scrollbar-width: thin; 
+    scrollbar-color: var(--accent-hover) #fdfdfd; 
+}
+
+.section-wrapper { 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    position: relative;
+}
+
+.bg-dark { 
+    background-color: #0a0a0a; 
+}
+
+.bg-darker { 
+    background-color: #202020; 
+}
+
+.h-min {
+    min-height: calc(100dvh - 40px);
+}
+
+.h-dvh {
+    min-height: 100dvh;
+}
+
+.h-dv {
+    height: 100dvh;
+}
+
+.h-100 {
+    min-height: 100%;
+}
+
+.pad-x {
+    padding-left: var(--sp-8);
+    padding-right: var(--sp-8);
+}
+
+/* =========================================
+   STYLE PER SECTION (Isi Undangan)
+========================================= */
+
+/* =========================================
+   Sec 1 - Depan (Dengan Custom Layer & Smart Flex)
+========================================= */
+
+#sec-1 .png-layer {
+    position: absolute;
+    top: -2%;
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 160%; 
+    min-width: 100%;
+    height: 102%; 
+    background-image: url('B2_inside.webp'); 
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover; 
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+
+/* =========================================
+   STRUKTUR FLEX KONTEN TEKS (ATAS, TENGAH, BAWAH)
+========================================= */
+.depan-wrap {
+    height: 100dvh;
+    padding: 0 var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    gap: clamp(10px, 2dvh, 20px);
+}
+
+.depan-wrap::before {
+    content: "";
+    flex: 1 1 20%; 
+    width: 100%;
+    pointer-events: none;
+}
+
+.depan-center { 
+    flex: 3 1 60%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+}
+
+.scroll-down-cta { 
+    flex: 1 1 20%; 
+    margin: 0 !important; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: var(--text-base); 
+    letter-spacing: 0.06em; 
+    gap: var(--sp-2); 
+    animation: bounceText 1.6s ease-in-out infinite; 
+    color: var(--text-primary); 
+}
+
+/* =========================================
+   DETAIL KONTEN TEKS
+========================================= */
+.depan-label-wedding { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    font-weight: 300; 
+    letter-spacing: 0.42em; 
+    text-transform: uppercase; 
+    margin-bottom: var(--sp-2); 
+}
+
+.depan-names { 
+    font-family: var(--font-display); 
+    font-size: var(--text-h1); 
+    line-height: 1; 
+    color: var(--accent-hover); 
+    text-shadow: none; 
+    margin: 0 0 var(--sp-4); 
+}
+
+.depan-date { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background: transparent !important; 
+    box-shadow: none !important; 
+}
+
+.depan-date .date-day { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    font-weight: 400; 
+    text-shadow: none; 
+}
+
+.depan-date .date-full { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    font-weight: 600; 
+    letter-spacing: 0.08em; 
+    text-shadow: none; 
+}
+
+.depan-date .full-location {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0;
+}
+
+@keyframes bounceText { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(var(--sp-3)); } 
+}
+
+/* =========================================
+   Sec 2 - Quote (Dengan Background Pattern)
+========================================= */
+
+
+.sec02-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    /* Padding atas bawah disesuaikan menjadi 10% & 15% agar logo di tengah punya ruang bernapas yang cukup */
+    padding: 10% var(--sp-4) 15%; 
+    text-align: center; 
+    gap: 28px; 
+    position: relative; 
+    z-index: 3; 
+}
+
+/* --- TAMBAHAN BARU: Area Tengah (Logo) --- */
+.sec02-center {
+    /* flex: grow(1) shrink(1) basis(auto) -> Ini yang membuatnya jadi pengisi ruang utama */
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    justify-content: end; /* Rata tengah horizontal */
+    align-items: center;     /* Rata tengah vertikal */
+    flex-direction: column;
+}
+
+#sec-2 .logomark {
+    max-width: 40%; /* Maksimal tinggi 30% dari layar viewport */
+    width: auto;       /* Menjaga proporsi gambar agar tidak gepeng */
+    object-fit: contain;
+    opacity: 0.85;     /* Opsional: Membuat logo tidak terlalu pekat, membaur dengan elegan */
+}
+/* ----------------------------------------- */
+
+/* =========================================
+   Komponen Ornamen Bawah (Khusus sec-2)
+========================================= */
+#sec-2 .ornament-wrap {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#sec-2 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-2 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-2 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+/* Layer PNG di dalam Cover Overlay */
+#sec-2 .png-layer {
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 160%; 
+    min-width: 102%; 
+    height: 102%; 
+    background-image: url('B3_bottom.webp'); 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    background-size: cover; 
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+.sec02-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 28px;
+    padding: 10% 0;
+}
+
+.sec02-quote {
+    font-family: var(--font-heading);
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    font-style: italic;
+    line-height: 1.9;
+    max-width: 400px;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.sec02-surah-ref { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    margin: 0; 
+    color: var(--accent-hover); 
+}
+
+.sec02-quote-author { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.2em; 
+    margin: 0; 
+    color: var(--text-primary); 
+    opacity: 0.6; 
+}
+
+/* =========================================
+   Sec 3 & 4 - Couple
+========================================= */
+
+/* =========================================
+   Komponen Ornamen Bawah (Khusus sec-3 & sec-4)
+========================================= */
+#sec-3 .ornament-wrap,
+#sec-4 .ornament-wrap {
+    position: absolute;
+    top: 5%; /* Diubah dari top: 0 menjadi bottom: 0 */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+#sec-3 .ornament-wrap .ornament-item,
+#sec-4 .ornament-wrap .ornament-item {
+    flex: 1 1 auto;
+    max-height: 28dvh;
+    width: auto;
+    max-width: 50%;
+    object-fit: contain;
+}
+
+#sec-3 .ornament-wrap .ornament-item:first-child,
+#sec-4 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-3 .ornament-wrap .ornament-item:last-child,
+#sec-4 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+.cfb-family-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Atur angka ini jika kamu ingin jarak antara 'Putri pertama dari' dan 'Nama Orang Tua' lebih rapat atau renggang */
+     /* Memberi sedikit ruang tambahan dari nama pengantin ke tombol IG */
+}
+
+.couple-fullbleed { 
+    position: relative; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    overflow: hidden; 
+    padding: 8dvh 0; 
+}
+
+.couple-fullbleed-bg { 
+    position: absolute; 
+    inset: 0; 
+    z-index: 0; 
+}
+
+.couple-fullbleed-bg img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center top; 
+    display: block; 
+}
+
+.couple-fullbleed-bg::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; 
+    background: var(--grad-hero-up); 
+}
+
+.couple-fullbleed-info {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2dvh;
+}
+
+.cfb-role {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 100;
+}
+
+.cfb-name {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    margin: 0;
+    font-weight: normal;
+    line-height: var(--text-h1);
+    text-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--sp-1);
+}
+
+.cfb-child-of { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-xl); 
+    font-style: italic; 
+    margin: 0; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+
+.cfb-sep { 
+    height: 1px; 
+    background: var(--grad-accent-r); 
+    flex: 1; 
+    max-width: 180px; 
+}
+
+.cfb-parents { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    margin: 0; 
+    line-height: var(--sp-6);
+}
+
+.cfb-ig {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    margin-top: var(--sp-4);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: fit-content;
+    color: var(--text-inverse);
+}
+
+/* =========================================
+   Sec 5 - Love Story
+========================================= */
+.lovestory-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--sp-4);
+    background: var(--grad-overlay-b);
+}
+
+.lovestory-header { 
+    text-align: left; 
+    padding: 0 0 var(--sp-4); 
+}
+
+.lovestory-label { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-xl); 
+    letter-spacing: 0.45em; 
+    text-transform: uppercase; 
+    display: block; 
+    margin-bottom: 4px; 
+}
+
+.timeline { 
+    position: relative; 
+    padding-left: 30px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: clamp(15px, 3vh, 30px); 
+}
+
+.timeline::before { 
+    content: ''; 
+    position: absolute; 
+    left: 7px; 
+    top: 8px; 
+    bottom: 8px; 
+    width: 1px; 
+    background: linear-gradient(to bottom, var(--accent-main), transparent); 
+}
+
+.timeline-item { 
+    position: relative; 
+}
+
+.timeline-dot { 
+    position: absolute; 
+    left: -28px; 
+    top: 6px; 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    background: var(--accent-hover); 
+    border: 2px solid var(--accent-main); 
+}
+
+.timeline-item span { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.28em; 
+    text-transform: uppercase; 
+    margin: 0 0 5px; 
+    font-weight: bold;
+}
+
+.timeline-item p { 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    line-height: 1.75; 
+    margin: 0; 
+}
+
+/* =========================================
+   Sec 6 - Event (Dengan Background Pattern)
+========================================= */
+.event-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(18px, 3vh, 32px);
+    position: relative;
+    z-index: 3;
+}
+/* =========================================
+   Komponen Ornamen Bawah (Khusus sec-2)
+========================================= */
+#sec-6 .ornament-wrap {
+    position: absolute;
+    top: 10dvh;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#sec-6 .ornament-wrap .ornament-item {
+    flex: 1 1 auto;
+    max-height: 24dvh;
+    width: auto;
+    max-width: 50%;
+    object-fit: contain;
+}
+
+#sec-6 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-6 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+/* Layer PNG di dalam Cover Overlay */
+#sec-6 .png-layer {
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 160%; 
+    min-width: 102%; 
+    height: 102%; 
+    background-image: url('B3_NO_bottom.webp'); 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    background-size: cover; 
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+.event-header h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    line-height: 0.8em;
+    color: var(--text-primary);
+}
+
+.event-date-sub { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    margin: 0; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    color: var(--text-primary); 
+}
+
+.event-cards { 
+    display: flex; 
+    flex-direction: column; 
+    gap: clamp(12px, 2vh, 20px); 
+}
+
+.event-card { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.event-card-divider { 
+    margin: 1% 0; 
+    height: 1px; 
+    width: 100%; 
+}
+
+.event-card-type {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+}
+
+.event-card-name { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-2xl); 
+    font-weight: 100; 
+    margin: 0; 
+    letter-spacing: 0.02em; 
+    color: var(--accent-hover); 
+}
+
+.event-card-type::after { 
+    content: ''; 
+    flex: 1; 
+    height: 1px; 
+    background: var(--grad-accent-r); 
+}
+
+.event-card-coloumn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 300px;
+}
+
+.event-card-row { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 10px; 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    color: var(--text-primary); 
+}
+
+.event-card-row i {
+    margin-top: 2px;
+    opacity: 0.6;
+    flex-shrink: 0;
+    width: 20px;
+}
+
+.event-maps-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+    transition: border-color 0.2s, background var(--ts-slow);
+}
+
+/* =========================================
+   Sec 7 - Countdown
+========================================= */
+#sec-7 .ornament-wrap {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 1;
+    pointer-events: none;
+    filter: contrast(0.5);
+}
+
+#sec-7 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-7 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-7 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+.countdown-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: clamp(18px, 3vh, 30px);
+    overflow: hidden;
+}
+
+.countdown-label { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.45em; 
+    text-transform: uppercase; 
+    margin: 0; 
+    opacity: 0.5; 
+}
+
+.countdown-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.05;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.countdown-boxes { 
+    display: flex; 
+    gap: clamp(8px, 2vw, 14px); 
+    justify-content: center; 
+}
+
+.cd-box { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 6px; 
+    border-radius: var(--rad-md); 
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 3vw, 22px); 
+    min-width: clamp(56px, 14vw, 72px); 
+    border: 1.5px solid rgba(55, 55, 55, 0.65); 
+    backdrop-filter: blur(4px); 
+    background: rgba(5, 5, 5, 0.3); 
+}
+
+.cd-num { 
+    font-family: var(--font-heading); 
+    font-size: clamp(1.6rem, 5vw, 2.2rem); 
+    font-weight: 700; 
+    line-height: 1; 
+}
+
+.cd-label { 
+    font-family: var(--font-heading); 
+    font-size: clamp(0.55rem, 1.2vw, 0.65rem); 
+    letter-spacing: 0.2em; 
+    text-transform: uppercase; 
+    opacity: 0.55; 
+}
+
+.countdown-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 240px; 
+    background: var(--grad-accent-x); 
+}
+
+.savedate-btn {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, background 0.2s;
+    color: var(--text-inverse);
+}
+
+.savedate-btn:hover { 
+    border-color: var(--text-inverse);
+}
+
+/* =========================================
+   Sec 8 - Gallery Masonry (Fixed 100dvh)
+========================================= */
+.gallery-sec-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: var(--sp-8) 0; 
+}
+
+.gallery-header { 
+    text-align: center; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: var(--sp-2); 
+}
+
+.gallery-tag { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    opacity: 0.4; 
+    margin: 0 0 6px 0; 
+}
+
+.gallery-title { 
+    font-size: var(--text-2xl); 
+    font-family: var(--font-heading); 
+    margin: 0; 
+    line-height: 1.1; 
+}
+
+.gallery-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 200px; 
+    background: var(--grad-accent-x); 
+    margin: 2px 0; 
+}
+
+.gallery-slider-container { 
+    width: 100%; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    padding: var(--sp-4) 0 0; 
+    overflow: hidden; 
+    min-height: 0; 
+}
+
+.gallery-slider-container > div { 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.gallery-slider-container .uk-position-relative { 
+    flex: 1; 
+    min-height: 0; 
+}
+
+.gallery-slider-container .uk-slider-items, 
+.gallery-slider-container .uk-slider-items > li { 
+    height: 100%; 
+}
+
+.gallery-masonry-grid { 
+    display: flex; 
+    gap: 6px; 
+    padding: 0 var(--sp-4); 
+    height: 100%; 
+}
+
+.gallery-col { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+}
+
+.gm-photo { 
+    overflow: hidden; 
+    cursor: pointer; 
+    position: relative; 
+    border-radius: var(--rad-sm); 
+}
+
+.gm-photo img { 
+    position: absolute; 
+    inset: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+    transition: transform 0.5s ease, filter 0.4s; 
+    filter: grayscale(12%); 
+}
+
+.gm-photo:hover img { 
+    transform: scale(1.04); 
+    filter: none; 
+}
+
+.gm-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: rgba(196, 168, 130, 0); 
+    transition: background 0.4s; 
+    pointer-events: none; 
+}
+
+.gm-photo:hover .gm-overlay { 
+    background: rgba(196, 168, 130, 0.12); 
+}
+
+.gallery-col:first-child .gm-photo:first-child { 
+    flex: 0 0 60%; 
+}
+
+.gallery-col:first-child .gm-photo:last-child  { 
+    flex: 1; 
+}
+
+.gallery-col:last-child  .gm-photo:first-child { 
+    flex: 0 0 38%; 
+}
+
+.gallery-col:last-child  .gm-photo:last-child  { 
+    flex: 1; 
+}
+
+/* =========================================
+   Custom Lightbox
+========================================= */
+#gm-lightbox { 
+    display: none; 
+    position: absolute; 
+    inset: 0; 
+    z-index: 99998; 
+    background: rgba(2, 2, 2, 0.96); 
+    align-items: center; 
+    justify-content: center; 
+    cursor: zoom-out; 
+}
+
+#gm-lightbox.open { 
+    display: flex; 
+}
+
+#gm-lightbox-img { 
+    max-width: 92%; 
+    max-height: 88%; 
+    object-fit: contain; 
+    border-radius: 4px; 
+    box-shadow: var(--shadow-lg); 
+    pointer-events: none; 
+    animation: gmFadeIn 0.25s ease; 
+}
+
+@keyframes gmFadeIn { 
+    from { 
+        opacity: 0; 
+        transform: scale(0.96); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: scale(1); 
+    } 
+}
+
+#gm-lightbox-close { 
+    position: absolute; 
+    top: 18px; 
+    right: 20px; 
+    background: none; 
+    border: none; 
+    color: rgba(255,255,255,0.7); 
+    font-size: 1.6rem; 
+    cursor: pointer; 
+    line-height: 1; 
+    z-index: 1; 
+}
+
+#gm-lightbox-close:hover { 
+    color: #fff; 
+}
+
+#gm-lightbox-caption { 
+    position: absolute; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.2em; 
+    color: rgba(255,255,255,0.5); 
+    white-space: nowrap; 
+}
+
+/* =========================================
+   Sec 9 - Video & Attire
+========================================= */
+.videoa-header { 
+    text-align: center; 
+    padding: 10dvh 0 var(--sp-4); 
+    width: 100%; 
+}
+
+.videoa-tag { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    opacity: 0.45; 
+    margin: 0 0 6px 0; 
+}
+
+.videoa-title { 
+    font-family: var(--font-display); 
+    font-size: var(--text-2xl); 
+    margin: 0; 
+    line-height: 1.1; 
+}
+
+.videoa-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 200px; 
+    background: var(--grad-accent-x); 
+    margin: 2px 0; 
+}
+
+.sec9-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+}
+
+.sec9-video-area { 
+    flex: 0 0 58%; 
+    position: relative; 
+    overflow: hidden; 
+    cursor: pointer; 
+    width: 100%; 
+}
+
+.sec9-video-thumb { 
+    width: 100%; 
+    height: 25dvh; 
+    object-fit: cover; 
+    display: block; 
+    transition: transform 0.6s ease, filter 0.4s; 
+    filter: brightness(0.72); 
+}
+
+.sec9-video-area:hover .sec9-video-thumb { 
+    transform: scale(1.03); 
+    filter: brightness(0.55); 
+}
+
+.sec9-video-overlay { 
+    position: absolute; 
+    inset: 0; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
+    background: linear-gradient(to top, rgba(2,2,2,0.55) 0%, rgba(2,2,2,0.1) 100%); 
+}
+
+.sec9-play-icon { 
+    font-size: clamp(3rem, 9vw, 4.2rem); 
+    opacity: 0.88; 
+    line-height: 1; 
+    transition: opacity 0.3s, transform 0.3s; 
+}
+
+.sec9-video-area:hover .sec9-play-icon { 
+    opacity: 1; 
+    transform: scale(1.1); 
+}
+
+.sec9-play-label { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.45em; 
+    text-transform: uppercase; 
+    opacity: 0.65; 
+}
+
+.sec9-video-tag { 
+    position: absolute; 
+    top: var(--sp-4); 
+    left: var(--sp-4); 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    opacity: 0.5; 
+}
+
+.sec9-attire-area { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: var(--sp-4); 
+    gap: clamp(10px, 1.8vh, 16px); 
+    text-align: center; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.sec9-attire-header { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 4px; 
+    padding: 2dvh 0 0; 
+}
+
+/* =========================================
+   1. SHARED BACKGROUND (Membungkus Sec 9 & Sec 10)
+========================================= */
+.shared-bg-container { 
+    position: relative; 
+    width: 100%; 
+}
+
+.bg-absolute-wrapper { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+.sticky-bg-wrapper { 
+    position: sticky; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    overflow: hidden; 
+    height: 100%; 
+}
+
+.shared-parallax-bg { 
+    position: absolute; 
+    inset: -15%; 
+    background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop'); 
+    background-size: cover; 
+    background-position: center; 
+    will-change: transform; 
+}
+
+.shared-parallax-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: var(--grad-overlay-b); 
+}
+
+.section-wrapper-transparent { 
+    position: relative; 
+    z-index: 1; 
+    background: transparent !important; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column;
+}
+
+/* Memastikan konten Sec 9 dan 10 selalu di atas Parallax Background */
+.sec9-attire-area > *, 
+.sec10-gift-area > * { 
+    position: relative; 
+    z-index: 1; 
+}
+
+
+/* =========================================
+   2. SEC 9 - VIDEO & ATTIRE
+========================================= */
+.sec9-attire-tag { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    opacity: 0.4; 
+    margin: 0 0 6px 0; 
+}
+
+.sec9-attire-title { 
+    font-size: var(--text-2xl); 
+    font-family: var(--font-heading); 
+    margin: 0; 
+    line-height: 1.1; 
+}
+
+.sec9-attire-subtitle { 
+    margin: 0; 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    font-style: italic; 
+    opacity: 0.5; 
+    line-height: 1.65; 
+}
+
+.sec9-attire-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 160px; 
+    background: var(--grad-accent-x); 
+}
+
+.sec9-swatches { 
+    display: flex; 
+    gap: clamp(4px, 6.6vw, 42px); 
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: var(--sp-6) 0 0; 
+}
+
+.sec9-swatch { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 10%; 
+    gap: var(--sp-2); 
+    overflow: visible; 
+}
+
+.sec9-swatch-circle { 
+    width: clamp(32px, 8.5vw, 46px); 
+    height: clamp(32px, 8.5vw, 46px); 
+    border-radius: 50%; 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35); 
+    border: 1.5px solid rgba(255,255,255,0.1); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+.sec9-swatch:hover .sec9-swatch-circle { 
+    transform: scale(1.12); 
+    box-shadow: 0 6px 22px rgba(0,0,0,0.5); 
+}
+
+.sec9-swatch-name { 
+    font-family: var(--font-heading); 
+    font-size: clamp(0.5rem, 1.1vw, 0.58rem); 
+    letter-spacing: 0.18em; 
+    text-transform: uppercase; 
+    opacity: 0.42; 
+}
+
+
+/* =========================================
+   2.1. CUSTOM VIDEO MODAL (Bagian dari Sec 9)
+========================================= */
+#video-modal { 
+    display: none; 
+    position: absolute; 
+    inset: 0; 
+    z-index: 99997; 
+    background: rgba(2, 2, 2, 0.97); 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+}
+
+#video-modal.open { 
+    display: flex; 
+}
+
+.video-modal-frame { 
+    width: 90%; 
+    max-width: 460px; 
+    aspect-ratio: 16 / 9; 
+    border-radius: var(--rad-md); 
+    overflow: hidden; 
+    box-shadow: var(--shadow-lg); 
+    background: #000; 
+    animation: gmFadeIn 0.25s ease; 
+}
+
+.video-modal-frame iframe { 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    display: block; 
+}
+
+#video-modal-close { 
+    position: absolute; 
+    top: 18px; 
+    right: 20px; 
+    background: none; 
+    border: none; 
+    color: rgba(255,255,255,0.6); 
+    font-size: 1.55rem; 
+    cursor: pointer; 
+    z-index: 1; 
+    transition: color 0.2s; 
+}
+
+#video-modal-close:hover { 
+    color: #fff; 
+}
+
+.video-modal-caption { 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.22em; 
+    color: rgba(255,255,255,0.35); 
+    margin-top: var(--sp-6); 
+    text-align: center; 
+}
+
+
+/* =========================================
+   3. SEC 10 - WEDDING GIFT
+========================================= */
+
+#sec-10 .ornament-wrap {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: var(--z-raised);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#sec-10 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-10 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-10 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+.sec10-gift-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+}
+
+.sec10-gift-area { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: clamp(20px, 3dvh, 32px) var(--sp-8) clamp(24px, 4dvh, 36px); 
+    gap: clamp(12px, 2dvh, 18px); 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.sec10-gift-header { 
+    text-align: center; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: var(--sp-2); 
+}
+
+.sec10-gift-tag { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    opacity: 0.4; 
+    margin: 0 0 6px 0; 
+}
+
+.sec10-gift-title { 
+    font-size: var(--text-2xl); 
+    font-family: var(--font-heading); 
+    margin: 0; 
+    line-height: 1.1; 
+}
+
+.sec10-gift-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 200px; 
+    background: var(--grad-accent-x); 
+    margin: var(--sp-4) 0; 
+}
+
+.sec10-gift-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    gap: var(--sp-2) 0; 
+}
+
+.sec10-gift-wrapper h2 {
+    color: var(--text-inverse);
+    opacity: 0.5;
+}
+
+.sec10-gift-address-wrap { 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row; 
+    gap: var(--sp-4); 
+    align-items: baseline; 
+}
+
+.sec10-gift-address-card { 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+
+.sec10-gift-address-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    line-height: 1.4;
+}
+
+.sec10-gift-address-text { 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    line-height: 1.4; 
+    margin: 0; 
+}
+
+.sec10-gift-address-btns {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.sec10-gift-addr-btn {
+    font-family: var(--font-body);
+    /* font-size: var(--text-sm); */
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-inverse);
+}
+
+.sec10-gift-bank-row { 
+    width: 100%; 
+    display: flex; 
+    gap: 10px; 
+}
+
+.sec10-gift-bank-card { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 3px; 
+}
+
+.sec10-gift-bank-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.sec10-gift-bank-name {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    font-family: var(--font-heading);
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1em;
+}
+
+.sec10-gift-bank-number { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-base); 
+    letter-spacing: 0.12em; 
+    margin: 2px 0 0; 
+}
+
+.sec10-gift-salin-btn { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.15em; 
+    text-transform: uppercase; 
+    color: var(--text-inverse); 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 5px; 
+    cursor: pointer; 
+    background: transparent; 
+    border: none; 
+    padding: 0; 
+    margin-top: 6px; 
+    opacity: 0.55; 
+    transition: opacity 0.2s; 
+}
+
+.sec10-gift-salin-btn:hover { 
+    opacity: 1; 
+}
+
+.sec10-gift-bank-row .sec10-gift-bank-card + .sec10-gift-bank-card { 
+    border-left: 1px solid rgba(255,255,255,0.08); 
+    padding-left: 10px; 
+}
+
+/* =========================================
+   Sec 11 - RSVP
+========================================= */
+
+#sec-11 .ornament-wrap {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#sec-11 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-11 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-11 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+.sec11-rsvp-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(48px, 8vh, 72px) var(--sp-8) clamp(32px, 5vh, 56px);
+    gap: clamp(18px, 3vh, 28px);
+    justify-content: center;
+    z-index: var(--z-raised);
+}
+
+.sec11-rsvp-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    color: var(--bg-inverse);
+}
+
+.sec11-rsvp-tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.sec11-rsvp-subtitle {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-style: italic;
+    opacity: 0.55;
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.sec11-rsvp-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 200px; 
+    background: var(--grad-accent-x); 
+    margin: 2px 0; 
+}
+
+.sec11-rsvp-form-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2vh, 16px);
+}
+
+.sec11-rsvp-field { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+}
+
+.sec11-rsvp-label { 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.28em; 
+    text-transform: uppercase; 
+    opacity: 0.8; 
+}
+
+.sec11-rsvp-input, 
+.sec11-rsvp-select, 
+.sec11-rsvp-textarea {
+    width: 100%;
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    outline: none;
+    transition: border-color 0.3s;
+    color: var(--text-primary);
+}
+
+.sec11-rsvp-input:focus, 
+.sec11-rsvp-select:focus, 
+.sec11-rsvp-textarea:focus { 
+    border-color: var(--text-inverse); 
+}
+
+.sec11-rsvp-input::placeholder, 
+.sec11-rsvp-textarea::placeholder { 
+    color: var(--text-primary); 
+    opacity: 0.8; 
+}
+
+.sec11-rsvp-select option { 
+    background: #111; 
+    color: var(--text-inverse); 
+}
+
+.sec11-rsvp-textarea { 
+    height: 90px; 
+    resize: none; 
+}
+
+.sec11-rsvp-radio-group { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.sec11-rsvp-radio { 
+    flex: 1; 
+    text-align: center; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.12em; 
+    opacity: 0.8; 
+    padding: 10px 0;
+}
+
+.sec11-rsvp-radio.active, 
+.sec11-rsvp-radio:hover { 
+    border-color: var(--accent-main); 
+    background: var(--accent-main);
+    color: var(--text-inverse); 
+    opacity: 1; 
+}
+
+.sec11-rsvp-btn-send { 
+    width: 100%; 
+    font-family: var(--font-heading); 
+    font-size: var(--text-sm); 
+    letter-spacing: 0.28em; 
+    text-transform: uppercase; 
+    padding: 12px 20px; 
+    background: var(--accent-hover); 
+    color: var(--bg-inverse); 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    transition: opacity 0.3s; 
+    font-weight: 600; 
+    margin-top: 4px; 
+}
+
+.sec11-rsvp-btn-send:hover { 
+    opacity: 0.85; 
+}
+
+/* =========================================
+   Sec 12 - Wishes
+========================================= */
+
+#sec-12 .ornament-wrap {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: var(--z-raised);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#sec-12 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-12 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-12 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+/* Layer PNG di dalam Cover Overlay */
+#sec-12 .png-layer {
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 160%; 
+    min-width: 102%; 
+    height: 102%; 
+    background-image: url('B3_NO_bottom.webp'); 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    background-size: cover; 
+    z-index: 2; 
+    pointer-events: none; 
+}
+.sec12-wishes-sec-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 8vh, 72px) 0;
+    gap: clamp(18px, 3vh, 28px);
+    z-index: var(--z-raised);
+}
+
+.sec12-wishes-header {
+    text-align: center;
+    padding: 0 var(--sp-4);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.sec12-wishes-tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin: 0 0 6px 0;
+    color: var(--text-primary);
+}
+
+.sec12-wishes-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    margin: 0;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.sec12-wishes-divider { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 200px; 
+    background: var(--grad-accent-x); 
+    margin: 2px 0; 
+}
+
+.sec12-wishes-slider-container {
+    width: 100%;
+    padding: 0 5%;
+    height: fit-content;
+}
+
+.sec12-wishes-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    padding: 0 10%; 
+    height: stretch; 
+}
+
+.sec12-wish-card-v2 {
+    padding: 16px 20px;
+    text-align: left;
+    height: stretch;
+}
+
+.sec12-wish-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    margin-bottom: 6px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.sec12-wish-text {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    opacity: 0.8;
+    line-height: 1.6;
+    max-height: 85px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.sec12-wish-text::-webkit-scrollbar { 
+    width: 3px; 
+}
+
+.sec12-wish-text::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+
+.sec12-wish-text::-webkit-scrollbar-thumb { 
+    background: transparent; 
+    border-radius: 10px; 
+}
+
+.uk-dotnav { 
+    margin-top: 25px; 
+}
+
+.uk-dotnav > * > * { 
+    background-color: var(--accent-light) !important; 
+    border-color: transparent !important; 
+}
+
+.uk-dotnav > .uk-active > * { 
+    background-color: var(--accent-main) !important; 
+}
+
+.uk-slidenav:hover { 
+    color: var(--accent-main) !important; 
+}
+
+/* =========================================
+   Sec 13 - Footer (Dengan Background Pattern)
+========================================= */
+
+#sec-13 .logomark {
+    max-height: 30dvh; /* Maksimal tinggi 30% dari layar viewport */
+    width: auto;       /* Menjaga proporsi gambar agar tidak gepeng */
+    object-fit: contain;
+    opacity: 0.85;     /* Opsional: Membuat logo tidak terlalu pekat, membaur dengan elegan */
+}
+
+/* =========================================
+   Komponen Ornamen Bawah (Khusus sec-13)
+========================================= */
+#sec-13 .ornament-wrap {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#sec-13 .ornament-wrap .ornament-item {
+    flex: 1 1 auto; 
+    max-height: 20dvh; 
+    width: auto; 
+    max-width: 50%; 
+    object-fit: contain; 
+}
+
+#sec-13 .ornament-wrap .ornament-item:first-child {
+    object-position: bottom left;
+}
+
+#sec-13 .ornament-wrap .ornament-item:last-child {
+    object-position: bottom right;
+}
+
+.sec13-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    /* Padding diubah dari "10% 0 5%" menjadi seperti di bawah ini agar proporsional */
+    padding: 10% 0 0; 
+    text-align: center; 
+    position: relative; 
+    z-index: 3; 
+}
+
+/* --- TAMBAHAN BARU: Area Tengah (Logo) --- */
+.sec13-center {
+    flex: 1 1 auto; /* Membuat elemen ini fleksibel mengisi sisa ruang */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: var(--sp-4); /* Memberi sedikit jarak antara logo dan teks Thank You di bawahnya */
+}
+/* ----------------------------------------- */
+
+.sec13-thankyou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-4);
+    width: 100%; 
+    
+    /* HAPUS "flex: 1;" dari sini. 
+       Karena jika ini "flex: 1" dan .sec13-center juga "flex: 1", 
+       keduanya akan berebut ruang. Kita ingin logonya yang mendominasi ruang atas. */
+    /* flex: 1; */
+    max-width: var(--w-container);
+    margin-bottom: var(--sp-8); /* Tambahkan margin agar tidak terlalu dempet dengan footer bawah */
+}
+
+.sec13-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--text-primary);
+    max-width: 500px;
+}
+
+.sec13-text { 
+    font-family: var(--font-body); 
+    font-size: var(--text-base); 
+    line-height: 1.2; 
+    margin: 0; 
+    opacity: 0.6; 
+    max-width: 400px; 
+    color: var(--text-primary); 
+}
+
+.sec13-names { 
+    font-family: var(--font-display); 
+    font-size: var(--text-3xl); 
+    margin: var(--sp-2) 0 0; 
+    line-height: 1.2; 
+    color: var(--accent-hover); 
+}
+
+/* Area Bawah / Kontak */
+.sec13-footer { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: var(--sp-2); 
+    width: 100%; 
+    padding: var(--sp-6) var(--sp-8); 
+    border-top: 1px solid rgba(0,0,0,0.15); 
+}
+
+.sec13-creator, 
+.sec13-copyright {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    opacity: 0.5;
+    margin: 0;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.sec13-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 var(--sp-6);
+}
+
+.sec13-contact-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    color: var(--text-primary); 
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.3s, color 0.3s;
+    letter-spacing: 0.1em;
+}
+
+.sec13-contact-list a:hover { 
+    opacity: 1; 
+    color: var(--accent-hover); 
+}
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE)
+========================================= */
+@media (max-width: 999px) {
+    .left-side { 
+        display: none !important; 
+    }
+    .main-content-wrapper { 
+        max-width: 100% !important; 
+        flex: 1; 
+        box-shadow: none; 
+    }
+    .main-content { 
+        max-width: 100% !important;
+    }
+    #nav-modal { 
+        max-width: 100%; 
+    }
+    .bottom-data { 
+        right: 20px; 
+        width: calc(100% - 40px); 
+        bottom: 20px; 
+    }
+    .hamburger-btn { 
+        right: 20px; 
+        top: 20px; 
+    }
+}
+/*]]>*/
