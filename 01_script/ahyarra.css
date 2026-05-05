@@ -97,10 +97,10 @@
     --accent-light:    rgba(212, 188, 150, 0.1);
     --border-subtle:   var(--c-gray-300);
     --border-accent:   rgba(196, 168, 130, 0.4);
-    --orn-l-sol:          url('lc_motif.webp');    
-    --orn-l-flo:          url('lc_flower.webp');
-    --orn-r-sol:          url('rc_motif.webp');    
-    --orn-r-flo:          url('rc_flower.webp');
+    --orn-l-sol:          url('https://res.cloudinary.com/ahyarra/image/upload/dataku/lc_motif.webp');    
+    --orn-l-flo:          url('https://res.cloudinary.com/ahyarra/image/upload/dataku/lc_flower.webp');
+    --orn-r-sol:          url('https://res.cloudinary.com/ahyarra/image/upload/dataku/rc_motif.webp');    
+    --orn-r-flo:          url('https://res.cloudinary.com/ahyarra/image/upload/dataku/rc_flower.webp');
 
     --grad-accent-x:   linear-gradient(to right, transparent, var(--accent-main), transparent);
     --grad-accent-r:   linear-gradient(to right, var(--accent-main), transparent);
@@ -209,7 +209,7 @@ body, html, .dataclient {
     content: ""; 
     position: absolute;
     inset: 0; 
-    background-image: url('repeat-pattern.svg'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/repeat-pattern.svg'); 
     background-repeat: repeat;
     background-size: 88.4px 152.5px; 
     z-index: var(--z-base); 
@@ -686,7 +686,7 @@ body, html, .dataclient {
     content: ""; 
     position: absolute; 
     inset: 0; 
-    background-image: url('repeat-pattern.svg'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/repeat-pattern.svg'); 
     background-repeat: repeat; 
     background-size: 88.4px 152.5px; 
     opacity: 0.5; 
@@ -703,7 +703,7 @@ body, html, .dataclient {
     width: 160%; 
     min-width: 102%; 
     height: 102%; 
-    background-image: url('A1_outside.webp'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/A1_outside.webp'); 
     background-repeat: no-repeat; 
     background-position: top center;
     background-size: cover; 
@@ -1080,7 +1080,7 @@ body, html, .dataclient {
     width: 160%; 
     min-width: 100%;
     height: 102%; 
-    background-image: url('B2_inside.webp'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/B2_inside.webp'); 
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover; 
@@ -1269,7 +1269,7 @@ body, html, .dataclient {
     width: 160%; 
     min-width: 102%; 
     height: 102%; 
-    background-image: url('B3_bottom.webp'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/B3_bottom.webp'); 
     background-repeat: no-repeat; 
     background-position: top center;
     background-size: cover; 
@@ -1582,7 +1582,7 @@ body, html, .dataclient {
     width: 160%; 
     min-width: 102%; 
     height: 102%; 
-    background-image: url('B3_NO_bottom.webp'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/B3_NO_bottom.webp'); 
     background-repeat: no-repeat; 
     background-position: top center;
     background-size: cover; 
@@ -2775,7 +2775,7 @@ body, html, .dataclient {
     width: 160%; 
     min-width: 102%; 
     height: 102%; 
-    background-image: url('B3_NO_bottom.webp'); 
+    background-image: url('https://res.cloudinary.com/ahyarra/image/upload/dataku/B3_NO_bottom.webp'); 
     background-repeat: no-repeat; 
     background-position: top center;
     background-size: cover; 
